@@ -1,0 +1,6 @@
+Task 2 : 
+https://drive.google.com/file/d/1gxqDzgKyLC97xxPf20ZKiVbgkMLNGgZ8/edit
+
+Detect the validation gate from the video and track its movement. Appropriate marking will be done on the basis of the approach used. 
+
+[Hint: To Track the movement of an object use Kalman Filtering techniques or any of its variants]
