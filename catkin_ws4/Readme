@@ -1,0 +1,16 @@
+Task 1:
+ROS Task
+
+Implementation of Newton Raphson Method using Actionlib server and client
+
+  Server contains the  function
+
+ 
+
+![](https://lh3.googleusercontent.com/cMATlQc8VMMo6TXan9H-_DcNbCQMV8bW4P0L_cuy7EOJLWDuhu85BSHM5MG9ZMi6rw3tg9tHlcGC6UT59pmRh4BnHKly2mNE6l9mTwOfFNHFAGsBy_QPQ0uSBN2d7hcNvAVvR9AV)
+
+  Client sends goal as  initial value $$x_{0}$$ and gets the feedback $$x_{1}$$ from server. Client again sends $$x_{1}$$ to server to get $$x_{2}$$.
+  Repeat such iterations to get accuracy upto 6 decimal points.
+
+Assume the function $$f(x) = x^3 - 5x + 13$$
+
