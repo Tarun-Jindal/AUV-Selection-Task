@@ -1,3 +1,4 @@
+#new
 cmake_minimum_required(VERSION 2.8.3)
 project(actionlib_task1)
 
@@ -8,7 +9,8 @@ project(actionlib_task1)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  actionlib  
+  actionlib
+  actionlib_msgs  
   roscpp
   rospy
   std_msgs
@@ -66,11 +68,11 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## Generate actions in the 'action' folder
   add_action_files(
-   DIRECTORY action
-   FILES NewtonRaphson.action
+	DIRECTORY action
+        FILES NewtonRaphson.action
 #   Action1.action
 #   Action2.action
- )
+  )
 
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
@@ -79,11 +81,50 @@ find_package(catkin REQUIRED COMPONENTS
    actionlib_msgs
  )
 
-add_executable(newtonraphson_server src/newtonraphson_server.cpp)
-target_link_libraries(newtonraphson_server ${catkin_LIBRARIES})
+  catkin_package(
 
-add_executable(newtonraphson_client src/newtonraphson_client.cpp)
-target_link_libraries(newtonraphson_client ${catkin_LIBRARIES})
+  CATKIN_DEPENDS actionlib_msgs 
+  
+  )
+
+#roscpp rospy std_msgs message_generation 
+
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+
+  ${Boost_INCLUDE_DIRS}
+)
+
+
+add_executable(newtonraphson_server-updated src/newtonraphson_server-updated.cpp)
+
+target_link_libraries(
+newtonraphson_server-updated 
+${catkin_LIBRARIES}
+)
+
+add_dependencies(
+  newtonraphson_server-updated
+  ${actionlib_task1_EXPORTED_TARGETS}
+)
+
+
+
+add_executable(newtonraphson_client-updated src/newtonraphson_client-updated.cpp)
+
+target_link_libraries(
+newtonraphson_client-updated 
+${catkin_LIBRARIES}
+)
+
+add_dependencies(
+  newtonraphson_client-updated
+  ${actionlib_task1_EXPORTED_TARGETS}
+)
+
+
+
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -114,23 +155,18 @@ target_link_libraries(newtonraphson_client ${catkin_LIBRARIES})
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-#catkin_package(
+ 
+#  DEPENDS system_lib
+
 #  INCLUDE_DIRS include
 #  LIBRARIES actionlib_task1
-#  CATKIN_DEPENDS roscpp rospy std_msgs actionlib_msgs message_generation 
-#  DEPENDS system_lib
-#)
-
 ###########
 ## Build ##
 ###########
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(
-  include
-  ${catkin_INCLUDE_DIRS}
-)
+
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
