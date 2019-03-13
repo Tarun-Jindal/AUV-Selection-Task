@@ -1,11 +1,10 @@
 #goal definition
-int32 samples
+float64 x
 ---
 #result definition
-float32 x1
+float64 ratio
 
 ---
 #feedback
-int32 sample
-float32 x1
+float64 ratio
 
